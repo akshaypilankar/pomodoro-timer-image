@@ -3,6 +3,7 @@ let timeLeft = 25 * 60; // seconds
 let timerInterval;
 let currentInterval = 'pomodoro';
 let backgroundColor = '#F1F1EF'; // Default background color
+const audio = new Audio('http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/alien_shoot.wav');
 
 // DOM elements
 const timeLeftEl = document.getElementById('time-left');
@@ -17,6 +18,7 @@ const closeModalBtn = document.querySelector('.close-btn');
 const backgroundColorSelect = document.getElementById('background-color');
 const backgroundImageSelect = document.getElementById('background-image'); // Updated ID
 const saveBtn = document.getElementById('save-btn');
+const timerSound = document.getElementById('timer-sound');
 
 // Event listeners for interval buttons
 pomodoroIntervalBtn.addEventListener('click', () => {
@@ -77,6 +79,7 @@ function startTimer() {
     timeLeft--;
     updateTimeLeftTextContent();
     if (timeLeft === 0) {
+      audio.play();
       clearInterval(timerInterval);
       if (currentInterval === 'pomodoro') {
         timeLeft = 5 * 60;
